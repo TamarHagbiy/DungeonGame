@@ -1,0 +1,43 @@
+# README - Game System
+
+## Overview
+This project is a dungeon exploration game where the player navigates through interconnected rooms, encounters monsters, and uses campfires for healing. The system is implemented using three main classes: `Entity`, `Room`, and `Game`.
+
+## Key Classes and Responsibilities
+
+### Entity
+Represents a player or monster with attributes and operations for health, damage, and comparisons.
+- **Attributes:** `name`, `_maxHealth`, `_currentHealth`, `_damage`.
+- **Key Methods:**
+  - Overloaded operators for health and damage manipulation (`+=`, `-=`).
+  - Comparisons (`==`, `>`).
+  - Printing using `<<` operator.
+
+### Room
+Represents a single room in the dungeon with a campfire and a monster.
+- **Attributes:** `campfire`, `monster`, `rooms` (pointers to neighboring rooms), `size`.
+- **Key Methods:**
+  - Dynamic room management (`resize`, `AddRoom`).
+  - Accessing neighboring rooms (`operator[]`).
+  - Room details with `<<` operator.
+
+### Game
+Manages the overall game logic, player progression, and interaction with rooms.
+- **Attributes:** `player` (an `Entity`), `entrance` (starting `Room`).
+- **Key Methods:**
+  - `GetInRoom`: Handles player interaction in a room.
+  - `Buttele`: Simulates a battle between the player and the room's monster.
+  - `MoveRoom`: Guides the player to choose the next room.
+  - `RunGame`: Main game loop combining all interactions.
+
+## Flow
+1. **Initialization:** The `Game` object is created with parameters for the player's stats and a configuration file defining the dungeon layout.
+2. **Gameplay Loop:**
+   - The player enters a room and interacts with its contents (campfire or monster).
+   - Battles are resolved using health and damage comparisons.
+   - The player navigates to the next room until they exit or lose.
+
+## Notes
+- The game uses a dynamic tree-like structure to represent rooms.
+- The configuration file format defines room names, campfire values, and monster stats for each room.
+- Ensure input validation when interacting with the game during runtime.
